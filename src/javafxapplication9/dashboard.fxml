@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxapplication9.dashboardController">
+   <children>
+      <BorderPane layoutX="34.0" layoutY="46.0" prefHeight="600.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <AnchorPane prefHeight="600.0" prefWidth="1004.0" BorderPane.alignment="CENTER">
+               <children>
+                  <AnchorPane prefHeight="600.0" prefWidth="251.0" style="-fx-background-color: #08096e;">
+                     <children>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="51.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@user_4476673.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="80.0" layoutY="179.0" prefHeight="31.0" prefWidth="115.0" text="Welcome" textFill="#f2f2f2">
+                           <font>
+                              <Font name="System Bold" size="21.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="usrename" layoutX="44.0" layoutY="210.0" text="Admin" textFill="WHITE" AnchorPane.leftAnchor="80.0">
+                           <font>
+                              <Font size="27.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="dash_btn" layoutX="5.0" layoutY="267.0" mnemonicParsing="false" onAction="#switchFrom" prefHeight="41.0" prefWidth="239.0" text="Dashboard">
+                           <font>
+                              <Font name="System Bold" size="21.0" />
+                           </font></Button>
+                        <Button fx:id="addMovie_btn" layoutX="5.0" layoutY="317.0" mnemonicParsing="false" onAction="#switchFrom" prefHeight="41.0" prefWidth="239.0" text="Add Movies">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font></Button>
+                        <Button fx:id="avaliableMov_btn" layoutX="6.0" layoutY="366.0" mnemonicParsing="false" onAction="#switchFrom" prefHeight="41.0" prefWidth="239.0" text="   Available Movies">
+                           <font>
+                              <Font name="System Bold" size="19.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="editScr_btn" layoutX="5.0" layoutY="413.0" mnemonicParsing="false" onAction="#switchFrom" prefHeight="41.0" prefWidth="239.0" text="Edit Screening">
+                           <font>
+                              <Font name="System Bold" size="19.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="cust_btn" layoutX="5.0" layoutY="463.0" mnemonicParsing="false" onAction="#switchFrom" prefHeight="41.0" prefWidth="239.0" text="Customers">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="signOut_btn" layoutX="71.0" layoutY="547.0" mnemonicParsing="false" onAction="#Logout" prefHeight="39.0" prefWidth="107.0" style="-fx-background-color: black;" text="Sign Out" textFill="#e4e0e0">
+                           <font>
+                              <Font name="System Bold" size="19.0" />
+                           </font>
+                        </Button>
+                        <ImageView fitHeight="47.0" fitWidth="69.0" layoutX="14.0" layoutY="544.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@right-arrow_5722366.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="33.0" fitWidth="55.0" layoutX="10.0" layoutY="267.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="30.0" fitWidth="38.0" layoutX="36.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@bar-graph_7308465.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="33.0" layoutY="317.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@add_8902296.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="35.0" fitWidth="37.0" layoutX="20.0" layoutY="369.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@done_17567143.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="38.0" fitWidth="41.0" layoutX="19.0" layoutY="415.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@write_14616743.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="36.0" fitWidth="40.0" layoutX="37.0" layoutY="465.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@avatar_15862579.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="dash_form" layoutX="249.0" layoutY="-7.0" prefHeight="607.0" prefWidth="992.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="249.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-7.0">
+                     <children>
+                        <AnchorPane layoutX="10.0" layoutY="14.0" prefHeight="175.0" prefWidth="915.0" style="-fx-background-color: #e1e1e3;">
+                           <children>
+                              <AnchorPane layoutX="21.0" layoutY="18.0" prefHeight="139.0" prefWidth="235.0" style="-fx-background-color: #67167d;">
+                                 <children>
+                                    <Label layoutX="87.0" layoutY="104.0" prefHeight="27.0" prefWidth="148.0" text="Total Sold Ticket" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <ImageView fitHeight="193.0" fitWidth="120.0" layoutX="8.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@ticket_2268091.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label fx:id="dash_totalSold" layoutX="146.0" layoutY="14.0" prefHeight="39.0" prefWidth="78.0" text="1500" textFill="#dadada">
+                                       <font>
+                                          <Font name="System Bold" size="27.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane layoutX="350.0" layoutY="19.0" prefHeight="138.0" prefWidth="216.0" style="-fx-background-color: #7a093e;">
+                                 <children>
+                                    <Label layoutX="87.0" layoutY="98.0" prefHeight="13.0" prefWidth="115.0" text="Total Income" textFill="#f8f1f1">
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <ImageView fitHeight="140.0" fitWidth="92.0" layoutX="7.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@money_7548261.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label fx:id="dash_totIncome" layoutX="137.0" layoutY="14.0" text="1500" textFill="#f5f5f5">
+                                       <font>
+                                          <Font name="System Bold" size="28.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane layoutX="656.0" layoutY="18.0" prefHeight="139.0" prefWidth="216.0" style="-fx-background-color: #220a63;">
+                                 <children>
+                                    <Label layoutX="59.0" layoutY="102.0" text="Available Movies" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <ImageView fitHeight="85.0" fitWidth="85.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@movie_17089427.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label fx:id="dash_avaliableMovie" layoutX="131.0" layoutY="14.0" text="1500" textFill="#f5f5f5">
+                                       <font>
+                                          <Font name="System Bold" size="28.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="8.0" layoutY="219.0" prefHeight="375.0" prefWidth="917.0" style="-fx-background-color: #e1e1e3;">
+                           <children>
+                              <ImageView fitHeight="385.0" fitWidth="659.0" layoutX="6.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@movie-avengers-infinity-war-black-panther-movie-black-widow-wallpaper-preview.jpg" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="381.0" fitWidth="249.0" layoutX="665.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@1303912080f60a3cbc14bf26d7405a06.jpg" />
+                                 </image>
+                              </ImageView>
+                           </children></AnchorPane>
+                     </children></AnchorPane>
+                  <AnchorPane fx:id="addMovie" layoutX="250.0" layoutY="-2.0" prefHeight="600.0" prefWidth="933.0" visible="false">
+                     <children>
+                        <AnchorPane layoutX="13.0" layoutY="18.0" onMouseClicked="#selectMoviesAddList" prefHeight="567.0" prefWidth="248.0" style="-fx-background-color: #e1e1e3;">
+                           <children>
+                              <AnchorPane layoutX="30.0" layoutY="25.0" prefHeight="178.0" prefWidth="148.0">
+                                 <children>
+                                    <ImageView fx:id="addMovie_viewImg" fitHeight="182.0" fitWidth="179.0" layoutX="-5.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                              </AnchorPane>
+                              <Button fx:id="addMovie_import" layoutX="84.0" layoutY="221.0" mnemonicParsing="false" onAction="#importImage" text="Import" />
+                              <Label layoutX="6.0" layoutY="263.0" text="Movie Title:" />
+                              <Label layoutX="9.0" layoutY="298.0" text="Genre:" />
+                              <Label layoutX="6.0" layoutY="329.0" text="Duration:" />
+                              <Label layoutX="1.0" layoutY="359.0" text="PublishedDate:">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></Label>
+                              <TextField fx:id="addMovie_movTitle" layoutX="83.0" layoutY="261.0" onAction="#selectMoviesAddList" prefHeight="28.0" prefWidth="148.0" />
+                              <TextField fx:id="addMovie_genre" layoutX="83.0" layoutY="293.0" onAction="#selectMoviesAddList" prefHeight="21.0" prefWidth="148.0" />
+                              <TextField fx:id="addMovie_duration" layoutX="84.0" layoutY="324.0" onAction="#selectMoviesAddList" prefHeight="13.0" prefWidth="148.0" />
+                              <Button fx:id="addMovie_insert" layoutX="12.0" layoutY="407.0" mnemonicParsing="false" onAction="#insertAddmov" prefHeight="46.0" prefWidth="89.0" style="-fx-background-color: blue;" text="Insert" textFill="WHITE" />
+                              <Button fx:id="addMovie_update" layoutX="123.0" layoutY="406.0" mnemonicParsing="false" onAction="#updateAddMovies" prefHeight="47.0" prefWidth="95.0" style="-fx-background-color: green;" text="Update" textFill="WHITE" />
+                              <Button fx:id="addMovie_delete" layoutX="11.0" layoutY="484.0" mnemonicParsing="false" onAction="#delAddMov" prefHeight="48.0" prefWidth="90.0" style="-fx-background-color: #e0092d;" text="Delete" textFill="WHITE" />
+                              <Button fx:id="addMovie_clear" layoutX="126.0" layoutY="484.0" mnemonicParsing="false" onAction="#clearAddMov" prefHeight="49.0" prefWidth="94.0" style="-fx-background-color: #b909e0;" text="Clear" textFill="WHITE" />
+                              <DatePicker fx:id="addMovie_pubDate" layoutX="95.0" layoutY="354.0" prefHeight="31.0" prefWidth="136.0" promptText="MM-DD-YYYY" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="275.0" layoutY="17.0" prefHeight="568.0" prefWidth="621.0" style="-fx-background-color: #e1e1e3;">
+                           <children>
+                              <TableView fx:id="addMovie_tableView" layoutX="1.0" layoutY="75.0" onMouseClicked="#selectMoviesAddList" onSort="#showAddMoviesList" prefHeight="490.0" prefWidth="620.0">
+                                <columns>
+                                  <TableColumn fx:id="addMovie_col_movTitle" prefWidth="142.0" text="Movie Title" />
+                                  <TableColumn fx:id="addMovie_col_genre" prefWidth="135.0" text="Genre" />
+                                    <TableColumn fx:id="addMovie_col_duration" prefWidth="176.0" text="Duration" />
+                                    <TableColumn fx:id="addMovie_col_publishDate" prefWidth="166.0" text="PublishedDate" />
+                                </columns>
+                              </TableView>
+                              <TextField fx:id="addMovie_search" layoutX="50.0" layoutY="20.0" onKeyTyped="#searAddMovie" prefHeight="40.0" prefWidth="230.0" promptText="Search" />
+                              <ImageView fitHeight="37.0" fitWidth="45.0" layoutX="243.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@e7d450d8c31ae10aa663d082fdbb3db9.jpg" />
+                                 </image>
+                              </ImageView>
+                           </children></AnchorPane>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="availableMovie" layoutX="250.0" layoutY="-2.0" prefHeight="600.0" prefWidth="932.0" visible="false">
+                     <children>
+                        <AnchorPane layoutX="8.0" layoutY="10.0" prefHeight="246.0" prefWidth="891.0" style="-fx-background-color: #e1e1e3;">
+                           <children>
+                              <AnchorPane layoutX="-1.0" prefHeight="244.0" prefWidth="292.0" style="-fx-background-color: #d0cdd1;">
+                                 <children>
+                                    <Label layoutX="12.0" layoutY="31.0" text="MovieTitle:" />
+                                    <Label layoutX="31.0" layoutY="78.0" text="Genre:" />
+                                    <Label layoutX="33.0" layoutY="123.0" text="Date:" />
+                                    <Button fx:id="avalMovie_selectMov" layoutX="90.0" layoutY="184.0" mnemonicParsing="false" onAction="#selectMovie" style="-fx-background-color: blue;" text="Select Movie" textFill="WHITE">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font></Button>
+                                    <Label fx:id="avalMovie_movTitle" layoutX="98.0" layoutY="31.0" prefHeight="21.0" prefWidth="166.0" />
+                                    <Label fx:id="avalMovie_genre" layoutX="90.0" layoutY="78.0" prefHeight="21.0" prefWidth="166.0" />
+                                    <Label fx:id="avalMovie_date" layoutX="90.0" layoutY="123.0" prefHeight="21.0" prefWidth="166.0" />
+                                 </children>
+                              </AnchorPane>
+                              <TableView fx:id="avalMovie_tableView" layoutX="302.0" layoutY="8.0" onMouseClicked="#selectAvaliableMov" prefHeight="232.0" prefWidth="587.0">
+                                <columns>
+                                  <TableColumn fx:id="avalMovie_col_movTitle" prefWidth="187.0" text="MovieTitle" />
+                                  <TableColumn fx:id="avalMovie_col_genre" prefWidth="201.0" text="Genre" />
+                                    <TableColumn fx:id="avalMovie_col_date" prefWidth="198.0" text="ShowingDate" />
+                                </columns>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="6.0" layoutY="273.0" prefHeight="308.0" prefWidth="895.0" style="-fx-background-color: #e1e1e3;">
+                           <children>
+                              <AnchorPane prefHeight="313.0" prefWidth="292.0" style="-fx-background-color: #d0cdd1;">
+                                 <children>
+                                    <AnchorPane layoutX="45.0" layoutY="14.0" prefHeight="177.0" prefWidth="187.0">
+                                       <children>
+                                          <ImageView fx:id="avalMovie_imgView" fitHeight="178.0" fitWidth="195.0" layoutX="-1.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true" />
+                                       </children>
+                                    </AnchorPane>
+                                    <Label fx:id="avalMovie_title" layoutX="115.0" layoutY="204.0" text="Label">
+                                       <font>
+                                          <Font name="System Bold" size="22.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="82.0" layoutY="242.0" prefHeight="30.0" prefWidth="128.0" text="       Title">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                 </children></AnchorPane>
+                              <Label layoutX="294.0" layoutY="1.0" prefHeight="46.0" prefWidth="243.0" text="Purchase Ticket">
+                                 <font>
+                                    <Font name="System Bold" size="31.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="464.0" layoutY="73.0" text="Quantity">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="612.0" layoutY="73.0" text="Price($)">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="345.0" layoutY="116.0" text="Special Classes:">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="345.0" layoutY="167.0" text="Normal Classes:">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <Spinner fx:id="avalMovie_special_quantity" layoutX="464.0" layoutY="113.0" onMouseClicked="#getSpinnerVal" prefHeight="31.0" prefWidth="98.0" />
+                              <Spinner fx:id="avalMovie_normal_quantity" layoutX="464.0" layoutY="160.0" onMouseClicked="#getSpinnerVal" prefHeight="31.0" prefWidth="98.0" />
+                              <Label fx:id="avalMovie_special_price" layoutX="612.0" layoutY="118.0" prefHeight="28.0" prefWidth="122.0" text="0.0$">
+                                 <font>
+                                    <Font size="19.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="avalMovie_normal_price" layoutX="613.0" layoutY="161.0" prefHeight="28.0" prefWidth="132.0" text="0.0$">
+                                 <font>
+                                    <Font size="19.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="696.0" layoutY="190.0" text="Total:">
+                                 <font>
+                                    <Font name="System Bold" size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="avalMovie_total" layoutX="771.0" layoutY="192.0" prefHeight="32.0" prefWidth="100.0" text="0.0$">
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
+                              </Label>
+                              <Button fx:id="avalMovie_buyBtn" layoutX="762.0" layoutY="256.0" mnemonicParsing="false" onAction="#buy" prefHeight="39.0" prefWidth="81.0" style="-fx-background-color: #049121;" text="Buy" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font></Button>
+                              <Button fx:id="avalMovie_recBtn" layoutX="633.0" layoutY="256.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="76.0" style="-fx-background-color: #a68003;" text="Receipt" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font></Button>
+                              <Button fx:id="avalMovie_clearBtn" layoutX="345.0" layoutY="257.0" mnemonicParsing="false" onAction="#clearpur" prefHeight="38.0" prefWidth="74.0" style="-fx-background-color: #910459;" text="Clear" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font></Button>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="EditScreeing" layoutX="249.0" prefHeight="600.0" prefWidth="908.0" visible="false">
+                     <children>
+                        <AnchorPane layoutX="14.0" layoutY="15.0" prefHeight="565.0" prefWidth="298.0" style="-fx-background-color: #e1e1e3;">
+                           <children>
+                              <AnchorPane layoutX="49.0" layoutY="36.0" prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <ImageView fx:id="EditSear_imgView" fitHeight="205.0" fitWidth="200.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                              </AnchorPane>
+                              <Label fx:id="EditSear_title" layoutX="118.0" layoutY="247.0" text="Label">
+                                 <font>
+                                    <Font name="System Bold" size="25.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="70.0" layoutY="291.0" prefHeight="31.0" prefWidth="155.0" text="          Title">
+                                 <font>
+                                    <Font size="21.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="20.0" layoutY="333.0" prefHeight="27.0" prefWidth="71.0" text="Current:">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <ComboBox fx:id="EditSear_cuurent" layoutX="87.0" layoutY="331.0" prefHeight="31.0" prefWidth="193.0" promptText="choose" />
+                              <Button fx:id="EditSear_update" layoutX="26.0" layoutY="398.0" mnemonicParsing="false" onAction="#updateEditscreeing" prefHeight="43.0" prefWidth="91.0" style="-fx-background-color: green;" text="Update" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font></Button>
+                              <Button fx:id="EditSear_delete" layoutX="176.0" layoutY="398.0" mnemonicParsing="false" onAction="#clearEditScreeing" prefHeight="45.0" prefWidth="99.0" style="-fx-background-color: red;" text="Clear" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font></Button>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="312.0" layoutY="15.0" prefHeight="430.0" prefWidth="621.0" style="-fx-background-color: #e1e1e3;">
+                           <children>
+                              <TableView fx:id="EditSear_tableView" layoutX="1.0" layoutY="75.0" onMouseClicked="#selectEditScreeing" prefHeight="490.0" prefWidth="620.0">
+                                 <columns>
+                                    <TableColumn fx:id="EditSear_col_movtitle" prefWidth="142.0" text="Movie Title" />
+                                    <TableColumn fx:id="EditSear_col_genre" prefWidth="135.0" text="Genre" />
+                                    <TableColumn fx:id="EditSear_col_duar" prefWidth="176.0" text="Duration" />
+                                    <TableColumn fx:id="EditSear_col_curr" prefWidth="166.0" text="Current" />
+                                 </columns>
+                              </TableView>
+                              <TextField fx:id="EditSear_search" layoutX="50.0" layoutY="20.0" onKeyTyped="#searchEditScr" prefHeight="40.0" prefWidth="230.0" promptText="Search" />
+                              <ImageView fitHeight="37.0" fitWidth="45.0" layoutX="243.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@e7d450d8c31ae10aa663d082fdbb3db9.jpg" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="Customer_form" layoutX="254.0" prefHeight="595.0" prefWidth="930.0" visible="false">
+                     <children>
+                        <AnchorPane layoutX="8.0" layoutY="30.0" prefHeight="548.0" prefWidth="292.0" style="-fx-background-color: #e8e8e8;">
+                           <children>
+                              <AnchorPane layoutY="-2.0" prefHeight="211.0" prefWidth="289.0" style="-fx-background-color: #cfcccc;">
+                                 <children>
+                                    <Label layoutX="14.0" layoutY="14.0" text="Ticket#:" />
+                                    <Label layoutX="14.0" layoutY="49.0" text="MovieTitle:" />
+                                    <Label layoutX="15.0" layoutY="85.0" text="DateChecked:" />
+                                    <Label layoutX="15.0" layoutY="117.0" text="TimeChecked:" />
+                                    <Label fx:id="customer_ticketNum" layoutX="72.0" layoutY="14.0" prefHeight="21.0" prefWidth="193.0" />
+                                    <Label fx:id="customer_movTit" layoutX="87.0" layoutY="49.0" prefHeight="21.0" prefWidth="193.0" />
+                                    <Label fx:id="customer_date" layoutX="113.0" layoutY="85.0" prefHeight="21.0" prefWidth="176.0" />
+                                    <Label fx:id="customer_time" layoutX="113.0" layoutY="117.0" prefHeight="21.0" prefWidth="180.0" />
+                                 </children>
+                              </AnchorPane>
+                              <Button fx:id="customer_clear" layoutX="23.0" layoutY="274.0" mnemonicParsing="false" onAction="#clearCust" prefHeight="44.0" prefWidth="95.0" style="-fx-background-color: #781073;" text="Clear" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="customer_delete" layoutX="175.0" layoutY="274.0" mnemonicParsing="false" onAction="#deleteCust" style="-fx-background-color: red;" text="Delete" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="19.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="298.0" layoutY="30.0" prefHeight="531.0" prefWidth="623.0" style="-fx-background-color: #e1e1e3;">
+                           <children>
+                              <TableView fx:id="customer_tableView" layoutX="1.0" layoutY="75.0" onMouseClicked="#selectCustList" prefHeight="471.0" prefWidth="620.0">
+                                 <columns>
+                                    <TableColumn fx:id="customer_col_tickNum" prefWidth="112.0" text="TicketNumber" />
+                                    <TableColumn fx:id="customer_col_movTit" prefWidth="158.0" text="MovieTitle" />
+                                    <TableColumn fx:id="customer_col_date" prefWidth="178.0" text="DateChecked" />
+                                    <TableColumn fx:id="customer_col_time" prefWidth="171.0" text="TimeChecked" />
+                                 </columns>
+                              </TableView>
+                              <TextField fx:id="customer_search" layoutX="50.0" layoutY="20.0" prefHeight="40.0" prefWidth="230.0" promptText="Search" />
+                              <ImageView fitHeight="37.0" fitWidth="45.0" layoutX="243.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@e7d450d8c31ae10aa663d082fdbb3db9.jpg" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>
