@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
@@ -19,18 +20,13 @@
          <children>
             <FlowPane prefHeight="506.0" prefWidth="347.0">
                <children>
-                  <ImageView fitHeight="510.0" fitWidth="561.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="507.0" fitWidth="348.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@e6a6cc88b6a2f747d231ba5647d5ca5d%20-%20Copy.jpg" />
+                        <Image url="@image/e6a6cc88b6a2f747d231ba5647d5ca5d%20-%20Copy.jpg" />
                      </image>
                   </ImageView>
                </children>
             </FlowPane>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="474.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@user_4476673%20-%20Copy.png" />
-               </image>
-            </ImageView>
             <Label layoutX="482.0" layoutY="202.0" prefHeight="21.0" prefWidth="150.0" text="Sign In">
                <font>
                   <Font name="System Bold" size="42.0" />
@@ -54,20 +50,21 @@
                <font>
                   <Font name="System Bold" size="16.0" />
                </font></Hyperlink>
+            <FontAwesomeIcon glyphName="USER" layoutX="506.0" layoutY="186.0" size="10em" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="sigup_form" prefHeight="508.0" prefWidth="772.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <FlowPane prefHeight="506.0" prefWidth="347.0">
                <children>
-                  <ImageView fitHeight="510.0" fitWidth="561.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="508.0" fitWidth="364.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@e6a6cc88b6a2f747d231ba5647d5ca5d%20-%20Copy.jpg" />
+                        <Image url="@image/e6a6cc88b6a2f747d231ba5647d5ca5d%20-%20Copy.jpg" />
                      </image>
                   </ImageView>
                </children>
             </FlowPane>
-            <Label layoutX="478.0" layoutY="183.0" prefHeight="62.0" prefWidth="159.0" text="SignUp">
+            <Label layoutX="481.0" layoutY="192.0" prefHeight="62.0" prefWidth="159.0" text="SignUp">
                <font>
                   <Font name="System Bold" size="41.0" />
                </font>
@@ -90,12 +87,8 @@
                <font>
                   <Font name="System Bold" size="17.0" />
                </font></Hyperlink>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="469.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@add-user_17436272.png" />
-               </image>
-            </ImageView>
             <TextField fx:id="sigup_email" layoutX="454.0" layoutY="265.0" prefHeight="40.0" prefWidth="208.0" promptText="Email Address" />
+            <FontAwesomeIcon glyphName="USER_PLUS" layoutX="494.0" layoutY="176.0" size="9em" text="" />
          </children>
       </AnchorPane>
    </children>

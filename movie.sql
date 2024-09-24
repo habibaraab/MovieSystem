@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 03, 2024 at 03:22 PM
+-- Generation Time: Sep 24, 2024 at 08:55 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.1.25
 
@@ -45,7 +45,10 @@ INSERT INTO `admin` (`email`, `username`, `password`) VALUES
 ('aya@gmail.com', 'Aya', '1234567890'),
 ('loly@gmail.com', 'loly', '15963'),
 ('Habiba@gmail.com', 'bia', '123456789'),
-('radwa@gmail.com', 'Radwa', '123456');
+('radwa@gmail.com', 'Radwa', '123456'),
+('Aya@gmail.com', 'aya', '123456'),
+('ahmed@gmail.com', 'Ahmed', '1234567'),
+('lol@gmail.com', 'Hany', '12345');
 
 -- --------------------------------------------------------
 
@@ -84,7 +87,12 @@ INSERT INTO `customer` (`id`, `type`, `movieTitle`, `total`, `date`, `time`) VAL
 (17, 'Special Class', 'MoonKnight', 60, '2024-09-02', '02:58:41'),
 (18, 'Special Class', 'CaptainMarvel', 60, '2024-09-02', '03:03:14'),
 (20, 'Special & Normal Class', 'guardians of the galaxy1', 170, '2024-09-03', '14:42:26'),
-(21, 'Special Class', 'Avangers2', 60, '2024-09-03', '15:30:18');
+(21, 'Special Class', 'Avangers2', 60, '2024-09-03', '15:30:18'),
+(22, 'Special & Normal Class', 'guardians of the galaxy2', 190, '2024-09-10', '22:09:43'),
+(23, 'Special Class', 'CaptainAmerica1', 60, '2024-09-19', '23:54:35'),
+(24, 'Special Class', 'Avangers1', 90, '2024-09-22', '00:38:36'),
+(25, 'Special Class', 'Loki', 60, '2024-09-22', '00:56:14'),
+(26, 'Special & Normal Class', 'Avangers1', 260, '2024-09-24', '21:38:14');
 
 -- --------------------------------------------------------
 
@@ -125,7 +133,12 @@ INSERT INTO `customer_info` (`id`, `customer_id`, `type`, `total`, `movieTitle`)
 (18, 18, 'Special Class', 60, 'CaptainMarvel'),
 (19, 19, 'Special & Normal Class', 150, 'AntiMan'),
 (20, 20, 'Special & Normal Class', 170, 'guardians of the galaxy1'),
-(21, 21, 'Special Class', 60, 'Avangers2');
+(21, 21, 'Special Class', 60, 'Avangers2'),
+(22, 22, 'Special & Normal Class', 190, 'guardians of the galaxy2'),
+(23, 23, 'Special Class', 60, 'CaptainAmerica1'),
+(24, 24, 'Special Class', 90, 'Avangers1'),
+(25, 25, 'Special Class', 60, 'Loki'),
+(26, 26, 'Special & Normal Class', 260, 'Avangers1');
 
 -- --------------------------------------------------------
 
@@ -148,18 +161,17 @@ CREATE TABLE `movie` (
 --
 
 INSERT INTO `movie` (`id`, `movieTitle`, `genre`, `duration`, `image`, `date`, `current`) VALUES
-(1, 'Avangers1', 'Action', '3:00:23', 'C:\\Users\\Dell\\Documents\\JavaFXApplication9\\src\\javafxapplication9\\image\\cf41f89b434e68864d0e3360d87d1cbf.jpg', '2024-03-11', 'Showing'),
-(2, 'Loki', 'Action', '3:00:09', 'C:\\\\Users\\\\Dell\\\\Documents\\\\JavaFXApplication9\\\\src\\\\javafxapplication9\\\\image\\\\aaeeba9b73aef0f2dc12237718577fcf.jpg', '2024-09-03', 'End Showing'),
-(3, 'MoonKnight', 'Adventure', '3:00:21', 'C:\\Users\\Dell\\Documents\\JavaFXApplication9\\src\\javafxapplication9\\image\\3d4a775637efc2d83c220740ac5df328.jpg', '2024-09-02', 'Showing'),
-(4, 'SpiderMan2', 'Adventure', '2:46:33', 'C:\\\\Users\\\\Dell\\\\Documents\\\\JavaFXApplication9\\\\src\\\\javafxapplication9\\\\image\\\\4854994674c2da4bc8ca3878c62a1546.jpg', '2018-09-05', 'Showing'),
-(5, 'guardians of the galaxy2', 'Fantasy', '3:22:23', 'C:\\\\Users\\\\Dell\\\\Documents\\\\JavaFXApplication9\\\\src\\\\javafxapplication9\\\\image\\\\8cd1ea9ac6ac5969df2163d7056ba4f3.jpg', '2024-09-03', 'Showing'),
-(6, 'CaptainAmerica1', 'Action', '2:22:00', 'C:\\\\Users\\\\Dell\\\\Documents\\\\JavaFXApplication9\\\\src\\\\javafxapplication9\\\\image\\\\c4785dd26c5ebb05e1a43a66c254acdc.jpg', '2024-09-03', 'Showing'),
-(7, 'Avangers2', 'Action', '3:55:00', 'C:\\\\Users\\\\Dell\\\\Documents\\\\JavaFXApplication9\\\\src\\\\javafxapplication9\\\\image\\\\83d08c728d0f96bf3c49c83fbd1931f5.jpg', '2024-09-01', 'Showing'),
-(8, 'DrStrange', 'Adventure', '2:34:00', 'C:\\\\Users\\\\Dell\\\\Documents\\\\JavaFXApplication9\\\\src\\\\javafxapplication9\\\\image\\\\bdac43c6538706992da09ca02bc5120e.jpg', '2020-07-08', 'Showing'),
-(10, 'AntiMan', 'Fantasy', '3:24:00', 'C:\\\\Users\\\\Dell\\\\Documents\\\\JavaFXApplication9\\\\src\\\\javafxapplication9\\\\image\\\\62a3aa6f15a1aa3711db560b6b7024c0.jpg', '2020-09-10', 'Showing'),
-(11, 'guardians of the galaxy1', 'Adventure', '2:12:45', 'C:\\\\Users\\\\Dell\\\\Documents\\\\JavaFXApplication9\\\\src\\\\javafxapplication9\\\\image\\\\6cbace8478b4d2aa8712161d9d56cf01.jpg', '2020-09-09', 'Showing'),
-(12, 'Avangers3', 'Action', '4:12:00', 'C:\\\\Users\\\\Dell\\\\Documents\\\\JavaFXApplication9\\\\src\\\\javafxapplication9\\\\image\\\\83d08c728d0f96bf3c49c83fbd1931f5.jpg', '2024-09-17', 'Showing'),
-(13, 'CaptainMarvel', 'Adventure', '3:32:00', 'C:\\\\Users\\\\Dell\\\\Documents\\\\JavaFXApplication9\\\\src\\\\javafxapplication9\\\\image\\\\b1ec3d3bc2e918b50191082a2bed4ca0.jpg', '2024-09-04', 'Showing');
+(1, 'Avangers1', 'Action', '3:00:23', 'E:\\MovieSystem\\src\\javafxapplication9\\image\\83d08c728d0f96bf3c49c83fbd1931f5.jpg', '2024-09-16', 'Showing'),
+(2, 'Loki', 'Action', '3:00:09', 'E:\\MovieSystem\\src\\javafxapplication9\\image\\aaeeba9b73aef0f2dc12237718577fcf.jpg', '2024-09-24', 'Showing'),
+(4, 'SpiderMan2', 'Adventure', '2:46:33', 'E:\\MovieSystem\\src\\javafxapplication9\\image\\4854994674c2da4bc8ca3878c62a1546.jpg', '2020-09-17', 'Showing'),
+(5, 'guardians of the galaxy2', 'Fantasy', '3:22:23', 'E:\\MovieSystem\\src\\javafxapplication9\\image\\c8c637f07e4c04bb811b1d8e9c816935.jpg', '2018-09-04', 'End Showing'),
+(6, 'CaptainAmerica1', 'Action', '2:22:00', 'E:\\MovieSystem\\src\\javafxapplication9\\image\\c4785dd26c5ebb05e1a43a66c254acdc.jpg', '2024-09-09', 'Showing'),
+(7, 'Avangers2', 'Action', '3:55:00', 'E:\\MovieSystem\\src\\javafxapplication9\\image\\83d08c728d0f96bf3c49c83fbd1931f5.jpg', '2024-11-07', 'Showing'),
+(8, 'DrStrange', 'Adventure', '2:34:00', 'E:\\MovieSystem\\src\\javafxapplication9\\image\\bdac43c6538706992da09ca02bc5120e.jpg', '2021-11-10', 'End Showing'),
+(10, 'AntiMan', 'Fantasy', '3:24:00', 'E:\\MovieSystem\\src\\javafxapplication9\\image\\62a3aa6f15a1aa3711db560b6b7024c0.jpg', '2020-09-03', 'Showing'),
+(11, 'guardians of the galaxy1', 'Adventure', '2:12:45', 'E:\\MovieSystem\\src\\javafxapplication9\\image\\8cd1ea9ac6ac5969df2163d7056ba4f3.jpg', '2024-05-10', 'Showing'),
+(12, 'Avangers3', 'Action', '4:12:00', 'E:\\MovieSystem\\src\\javafxapplication9\\image\\cf41f89b434e68864d0e3360d87d1cbf.jpg', '2024-12-03', 'Showing'),
+(11, 'captainMarvel', 'Adventure', '3:00:12', 'E:\\\\MovieSystem\\\\src\\\\javafxapplication9\\\\image\\\\b1ec3d3bc2e918b50191082a2bed4ca0.jpg', '2024-12-04', 'Showing');
 
 --
 -- Indexes for dumped tables
@@ -185,13 +197,13 @@ ALTER TABLE `customer_info`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `customer_info`
 --
 ALTER TABLE `customer_info`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
