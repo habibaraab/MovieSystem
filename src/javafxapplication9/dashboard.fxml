@@ -207,7 +207,7 @@
                                     <TableColumn fx:id="addMovie_col_publishDate" prefWidth="166.0" text="PublishedDate" />
                                 </columns>
                               </TableView>
-                              <TextField fx:id="addMovie_search" layoutX="50.0" layoutY="20.0" onKeyTyped="#searAddMovie" prefHeight="40.0" prefWidth="230.0" promptText="search" styleClass="search" stylesheets="@dashboardDesign.css" />
+                              <TextField fx:id="addMovie_search" layoutX="50.0" layoutY="20.0" onMouseClicked="#searAddMovie" prefHeight="40.0" prefWidth="230.0" promptText="search" styleClass="search" stylesheets="@dashboardDesign.css" />
                               <FontAwesomeIcon fill="#464141" glyphName="SEARCH" layoutX="60.0" layoutY="45.0" />
                            </children></AnchorPane>
                      </children>
@@ -395,7 +395,7 @@
                                     <TableColumn fx:id="EditSear_col_curr" prefWidth="166.0" text="Current" />
                                  </columns>
                               </TableView>
-                              <TextField fx:id="EditSear_search" layoutX="50.0" layoutY="20.0" onKeyTyped="#searchEditScr" prefHeight="40.0" prefWidth="230.0" promptText="Search" styleClass="search" stylesheets="@dashboardDesign.css" />
+                              <TextField fx:id="EditSear_search" layoutX="50.0" layoutY="20.0" onMouseClicked="#searchEditScr" prefHeight="40.0" prefWidth="230.0" promptText="Search" styleClass="search" stylesheets="@dashboardDesign.css" />
                               <FontAwesomeIcon glyphName="SEARCH" layoutX="59.0" layoutY="45.0" />
                            </children>
                            <styleClass>

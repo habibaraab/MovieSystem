@@ -1025,67 +1025,58 @@ public class dashboardController implements Initializable {
         }
 
     }
+    
 
-    public void searAddMovie() {
+  public void searAddMovie() {
+    FilteredList<moviesData> filter = new FilteredList<>(listAddMovies, e -> true);
+    addMovie_search.textProperty().addListener((observable, oldValue, newValue) -> {
+        
+        filter.setPredicate(predicatMoviesData -> {
+   
+            if (newValue == null || newValue.isEmpty()) {
+                return true;
+            }
 
-        FilteredList<moviesData> filter = new FilteredList<>(listAddMovies, e -> true);
-        addMovie_search.textProperty().addListener((Observable, oldValue, newValue) -> {
-            filter.setPredicate(predicatMoviesData -> {
-                if (newValue.isEmpty() || newValue == null) {
-                    return true;
-                }
-                String key = newValue.toLowerCase();
-                if (predicatMoviesData.getTitle().toLowerCase().contains(key)) {
-                    return true;
-                } else if (predicatMoviesData.getGenre().toLowerCase().contains(key)) {
-                    return true;
-                } else if (predicatMoviesData.getDuaration().toLowerCase().contains(key)) {
-                    return true;
-                } else if (predicatMoviesData.getDate().toString().contains(key)) {
-                    return true;
-                } else {
-                    return false;
-                }
+            String key = newValue.toLowerCase();
 
-            });
-
+            if (predicatMoviesData.getTitle().toLowerCase().contains(key)) {
+                return true; 
+            } else if (predicatMoviesData.getGenre().toLowerCase().contains(key)) {
+                return true; 
+            } else if (predicatMoviesData.getDuration().toLowerCase().contains(key)) {
+                return true; 
+            } else if (predicatMoviesData.getDate().toString().toLowerCase().contains(key)) {
+                return true; 
+            }
+            return false; 
         });
+    });
 
-        SortedList<moviesData> sortData = new SortedList<>(filter);
-        sortData.comparatorProperty().bind(addMovie_tableView.comparatorProperty());
-        addMovie_tableView.setItems(sortData);
+    SortedList<moviesData> sortData = new SortedList<>(filter); 
+    sortData.comparatorProperty().bind(addMovie_tableView.comparatorProperty());
+    addMovie_tableView.setItems(sortData);
+}
 
-    }
 
-    public void searchEditScr() {
-
-        FilteredList<moviesData> filter = new FilteredList<>(editScreeing, e -> true);
-        EditSear_search.textProperty().addListener((Observable, oldValue, newValue) -> {
-            filter.setPredicate(predicatMoviesData -> {
-                if (newValue.isEmpty() || newValue == null) {
-                    return true;
-                }
-                String key = newValue.toLowerCase();
-                if (predicatMoviesData.getTitle().toLowerCase().contains(key)) {
-                    return true;
-                } else if (predicatMoviesData.getGenre().toLowerCase().contains(key)) {
-                    return true;
-                } else if (predicatMoviesData.getDuaration().toLowerCase().contains(key)) {
-                    return true;
-                } else if (predicatMoviesData.getCurrent().contains(key)) {
-                    return true;
-                } else {
-                    return false;
-                }
-            });
-
+   public void searchEditScr() {
+    FilteredList<moviesData> filter = new FilteredList<>(editScreeing, e -> true);
+    EditSear_search.textProperty().addListener((observable, oldValue, newValue) -> {
+        filter.setPredicate(predicatMoviesData -> {
+            if (newValue.isEmpty()) {
+                return true; // Return all items if the search field is empty
+            }
+            String key = newValue.toLowerCase();
+            return predicatMoviesData.getTitle().toLowerCase().contains(key) ||
+                   predicatMoviesData.getGenre().toLowerCase().contains(key) ||
+                   predicatMoviesData.getDuaration().toLowerCase().contains(key) ||
+                   predicatMoviesData.getCurrent().toLowerCase().contains(key);
         });
+    });
 
-        SortedList<moviesData> sortData = new SortedList<>(filter);
-        sortData.comparatorProperty().bind(EditSear_tableView.comparatorProperty());
-        EditSear_tableView.setItems(sortData);
-
-    }
+    SortedList<moviesData> sortData = new SortedList<>(filter);
+    sortData.comparatorProperty().bind(EditSear_tableView.comparatorProperty());
+    EditSear_tableView.setItems(sortData);
+}
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {

@@ -81,7 +81,7 @@
                         <FontAwesomeIcon glyphName="SERVER" layoutX="27.0" layoutY="378.0" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="dash_form" layoutX="249.0" layoutY="-7.0" prefHeight="607.0" prefWidth="992.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="249.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-7.0">
+                  <AnchorPane fx:id="dash_form" layoutX="249.0" layoutY="-7.0" prefHeight="607.0" prefWidth="992.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="249.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-7.0">
                      <children>
                         <AnchorPane layoutX="26.0" layoutY="14.0" prefHeight="175.0" prefWidth="899.0" stylesheets="@dashboardDesign.css">
                            <children>
@@ -207,7 +207,7 @@
                                     <TableColumn fx:id="addMovie_col_publishDate" prefWidth="166.0" text="PublishedDate" />
                                 </columns>
                               </TableView>
-                              <TextField fx:id="addMovie_search" layoutX="50.0" layoutY="20.0" onKeyTyped="#searAddMovie" prefHeight="40.0" prefWidth="230.0" promptText="search" styleClass="search" stylesheets="@dashboardDesign.css" />
+                              <TextField fx:id="addMovie_search" layoutX="50.0" layoutY="20.0" onMouseClicked="#searAddMovie" prefHeight="40.0" prefWidth="230.0" promptText="search" styleClass="search" stylesheets="@dashboardDesign.css" />
                               <FontAwesomeIcon fill="#464141" glyphName="SEARCH" layoutX="60.0" layoutY="45.0" />
                            </children></AnchorPane>
                      </children>
@@ -342,7 +342,7 @@
                         </AnchorPane>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="EditScreeing" layoutX="253.0" prefHeight="600.0" prefWidth="929.0" visible="false">
+                  <AnchorPane fx:id="EditScreeing" layoutX="253.0" prefHeight="600.0" prefWidth="929.0">
                      <children>
                         <AnchorPane layoutX="18.0" layoutY="15.0" prefHeight="565.0" prefWidth="283.0" stylesheets="@dashboardDesign.css">
                            <children>
@@ -395,7 +395,7 @@
                                     <TableColumn fx:id="EditSear_col_curr" prefWidth="166.0" text="Current" />
                                  </columns>
                               </TableView>
-                              <TextField fx:id="EditSear_search" layoutX="50.0" layoutY="20.0" onKeyTyped="#searchEditScr" prefHeight="40.0" prefWidth="230.0" promptText="Search" styleClass="search" stylesheets="@dashboardDesign.css" />
+                              <TextField fx:id="EditSear_search" layoutX="50.0" layoutY="20.0" onMouseClicked="#searchEditScr" prefHeight="40.0" prefWidth="230.0" promptText="Search" styleClass="search" stylesheets="@dashboardDesign.css" />
                               <FontAwesomeIcon glyphName="SEARCH" layoutX="59.0" layoutY="45.0" />
                            </children>
                            <styleClass>
