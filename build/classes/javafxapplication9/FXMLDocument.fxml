@@ -10,13 +10,42 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="508.0" prefWidth="772.0" style="-fx-background-color: #08096e;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxapplication9.FXMLDocumentController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="506.0" prefWidth="772.0" style="-fx-background-color: #08096e;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxapplication9.FXMLDocumentController">
    <children>
-      <AnchorPane fx:id="sigin_form" prefHeight="506.0" prefWidth="763.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="sigup_form" layoutX="-1.0" layoutY="-3.0" onDragDetected="#switchForm" prefHeight="507.0" prefWidth="772.0" visible="false">
+         <children>
+            <FlowPane layoutY="-6.0" prefHeight="521.0" prefWidth="352.0">
+               <children>
+                  <ImageView fitHeight="515.0" fitWidth="371.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/e6a6cc88b6a2f747d231ba5647d5ca5d%20-%20Copy.jpg" />
+                     </image>
+                  </ImageView>
+               </children>
+            </FlowPane>
+            <FontAwesomeIcon glyphName="USER_PLUS" layoutX="504.0" layoutY="150.0" size="10em" wrappingWidth="84.0" />
+            <Label layoutX="500.0" layoutY="167.0" text="Sign Up" textFill="#221212">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+            </Label>
+            <TextField fx:id="sigup_email" layoutX="480.0" layoutY="242.0" prefHeight="35.0" prefWidth="169.0" promptText="Email Address" />
+            <TextField fx:id="sigup_username" layoutX="480.0" layoutY="296.0" prefHeight="35.0" prefWidth="169.0" promptText="Username" />
+            <Button fx:id="signup_btn" layoutX="526.0" layoutY="402.0" mnemonicParsing="false" onAction="#signup" text="SignUp">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Button>
+            <Hyperlink fx:id="alreadyHaveAccount" layoutX="496.0" layoutY="456.0" onAction="#switchForm" prefHeight="23.0" prefWidth="194.0" text="Already have an account">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Hyperlink>
+            <PasswordField fx:id="sigup_password" layoutX="481.0" layoutY="349.0" prefHeight="35.0" prefWidth="169.0" promptText="Password" />
+         </children></AnchorPane>
+      <AnchorPane fx:id="sigin_form" layoutY="2.0" prefHeight="506.0" prefWidth="763.0" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="2.0">
          <children>
             <FlowPane prefHeight="506.0" prefWidth="347.0">
                <children>
@@ -27,68 +56,24 @@
                   </ImageView>
                </children>
             </FlowPane>
-            <Label layoutX="482.0" layoutY="202.0" prefHeight="21.0" prefWidth="150.0" text="Sign In">
-               <font>
-                  <Font name="System Bold" size="42.0" />
-               </font>
-               <textFill>
-                  <LinearGradient endX="1.0" endY="1.0" startX="1.0" startY="1.0">
-                     <stops>
-                        <Stop color="BLACK" />
-                        <Stop color="WHITE" offset="1.0" />
-                     </stops>
-                  </LinearGradient>
-               </textFill>
-            </Label>
-            <TextField fx:id="sigin_username" layoutX="464.0" layoutY="280.0" onAction="#sigin" prefHeight="40.0" prefWidth="202.0" promptText="Username" />
-            <PasswordField fx:id="sigin_password" layoutX="461.0" layoutY="340.0" onAction="#sigin" prefHeight="40.0" prefWidth="208.0" promptText="Password" />
-            <Button fx:id="signin_btn" layoutX="501.0" layoutY="399.0" mnemonicParsing="false" onAction="#sigin" prefHeight="40.0" prefWidth="128.0" text="Login" AnchorPane.bottomAnchor="58.0" AnchorPane.leftAnchor="501.0" AnchorPane.rightAnchor="143.0" AnchorPane.topAnchor="399.0">
+            <Label layoutX="517.0" layoutY="194.0" prefHeight="21.0" prefWidth="150.0" text="Sign In" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="24.0" />
-               </font></Button>
+               </font>
+            </Label>
+            <TextField fx:id="sigin_username" layoutX="464.0" layoutY="280.0" onAction="#sigin" prefHeight="33.0" prefWidth="202.0" promptText="Username" />
+            <PasswordField fx:id="sigin_password" layoutX="465.0" layoutY="340.0" onAction="#sigin" prefHeight="33.0" prefWidth="202.0" promptText="Password" />
+            <Button fx:id="signin_btn" layoutX="538.0" layoutY="402.0" mnemonicParsing="false" onAction="#sigin" prefHeight="33.0" prefWidth="62.0" text="Login" AnchorPane.bottomAnchor="73.0" AnchorPane.leftAnchor="538.0" AnchorPane.rightAnchor="172.0" AnchorPane.topAnchor="402.0">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
             <Hyperlink fx:id="createnewAccount" layoutX="481.0" layoutY="461.0" onAction="#switchForm" text="create a new account">
                <font>
                   <Font name="System Bold" size="16.0" />
-               </font></Hyperlink>
-            <FontAwesomeIcon glyphName="USER" layoutX="506.0" layoutY="186.0" size="10em" />
-         </children>
-      </AnchorPane>
-      <AnchorPane fx:id="sigup_form" prefHeight="508.0" prefWidth="772.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <FlowPane prefHeight="506.0" prefWidth="347.0">
-               <children>
-                  <ImageView fitHeight="508.0" fitWidth="364.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@image/e6a6cc88b6a2f747d231ba5647d5ca5d%20-%20Copy.jpg" />
-                     </image>
-                  </ImageView>
-               </children>
-            </FlowPane>
-            <Label layoutX="481.0" layoutY="192.0" prefHeight="62.0" prefWidth="159.0" text="SignUp">
-               <font>
-                  <Font name="System Bold" size="41.0" />
                </font>
-               <textFill>
-                  <LinearGradient endX="1.0" endY="1.0" startX="1.0" startY="1.0">
-                     <stops>
-                        <Stop color="BLACK" />
-                        <Stop color="WHITE" offset="1.0" />
-                     </stops>
-                  </LinearGradient>
-               </textFill>
-            </Label>
-            <TextField fx:id="sigup_username" layoutX="456.0" layoutY="316.0" prefHeight="40.0" prefWidth="208.0" promptText="Username" />
-            <PasswordField fx:id="sigup_password" layoutX="456.0" layoutY="369.0" prefHeight="40.0" prefWidth="208.0" promptText="Password" />
-            <Button fx:id="signup_btn" layoutX="494.0" layoutY="423.0" mnemonicParsing="false" onAction="#signup" prefHeight="40.0" prefWidth="128.0" text="SignUp">
-               <font>
-                  <Font name="System Bold" size="19.0" />
-               </font></Button>
-            <Hyperlink fx:id="alreadyHaveAccount" layoutX="456.0" layoutY="465.0" onAction="#switchForm" text="Already have an account">
-               <font>
-                  <Font name="System Bold" size="17.0" />
-               </font></Hyperlink>
-            <TextField fx:id="sigup_email" layoutX="454.0" layoutY="265.0" prefHeight="40.0" prefWidth="208.0" promptText="Email Address" />
-            <FontAwesomeIcon glyphName="USER_PLUS" layoutX="494.0" layoutY="176.0" size="9em" text="" />
+            </Hyperlink>
+            <FontAwesomeIcon glyphName="USER" layoutX="517.0" layoutY="167.0" size="9em" wrappingWidth="62.0" />
          </children>
       </AnchorPane>
    </children>

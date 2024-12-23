@@ -34,89 +34,46 @@ import javax.swing.JOptionPane;
  */
 public class FXMLDocumentController implements Initializable {
 
-    @FXML
-    private AnchorPane sigin_form;
-
-    @FXML
-    private TextField sigin_username;
-
-    @FXML
-    private PasswordField sigin_password;
-
-    @FXML
-    private Button signin_btn;
+   @FXML
+    private Hyperlink alreadyHaveAccount;
 
     @FXML
     private Hyperlink createnewAccount;
 
     @FXML
-    private AnchorPane sigup_form;
+    private AnchorPane sigin_form;
 
     @FXML
-    private TextField sigup_username;
+    private PasswordField sigin_password;
 
     @FXML
-    private PasswordField sigup_password;
+    private TextField sigin_username;
+
+    @FXML
+    private Button signin_btn;
 
     @FXML
     private Button signup_btn;
 
     @FXML
-    private Hyperlink alreadyHaveAccount;
+    private TextField sigup_email;
 
     @FXML
-    private TextField sigup_email;
+    private AnchorPane sigup_form;
+
+    @FXML
+    private TextField sigup_password;
+
+    @FXML
+    private TextField sigup_username;
+
 
     private Connection connect;
     private PreparedStatement prepare;
  
     private ResultSet result;
 
-    public void signup() {
-        String sql = "insert into admin (email,username,password) values (?,?,?)";
-
-        connect = database.getCon();
-        try {
-            prepare = connect.prepareStatement(sql);
-            prepare.setString(1, sigup_email.getText());
-            prepare.setString(2, sigup_username.getText());
-            prepare.setString(3, sigup_password.getText());
-
-            Alert alert;
-            if (sigup_email.getText().isEmpty() || sigup_password.getText().isEmpty() || sigup_username.getText().isEmpty()) {
-                alert = new Alert(AlertType.ERROR);
-                alert.setTitle("Error Message");
-                alert.setHeaderText(null);
-                alert.setContentText("Please fill all blank fields");
-                alert.showAndWait();
-            } else if (sigup_password.getText().length() < 5) {
-
-                alert = new Alert(AlertType.ERROR);
-                alert.setTitle("Error Message");
-                alert.setHeaderText(null);
-                alert.setContentText("Invaild password");
-                alert.showAndWait();
-
-            } else {
-
-                prepare.execute();
-                alert = new Alert(AlertType.INFORMATION);
-                alert.setTitle("Information Message");
-                alert.setHeaderText(null);
-                alert.setContentText("Successfully create a new account!");
-                alert.showAndWait();
-
-                sigup_email.setText("");
-                sigup_username.setText("");
-                sigup_password.setText("");
-            }
-
-        } catch (Exception e) {
-            System.out.println(e);
-
-        }
-    }
-
+               
     public void sigin() {
         String sql = "select *from admin where username = ?and password = ?";
         connect = database.getCon();
@@ -165,8 +122,62 @@ public class FXMLDocumentController implements Initializable {
         }
 
     }
+    
+    
+    public void signup() {
+        String sql = "insert into admin (email,username,password) values (?,?,?)";
 
-    public void switchForm(ActionEvent ev) {
+        connect = database.getCon();
+        try {
+            prepare = connect.prepareStatement(sql);
+            prepare.setString(1, sigup_email.getText());
+            prepare.setString(2, sigup_username.getText());
+            prepare.setString(3, sigup_password.getText());
+
+            Alert alert;
+            if (sigup_email.getText().isEmpty() || sigup_password.getText().isEmpty() || sigup_username.getText().isEmpty()) {
+                alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Please fill all blank fields");
+                alert.showAndWait();
+            } else if (sigup_password.getText().length() < 5) {
+
+                alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Invaild password");
+                alert.showAndWait();
+
+            }else if(!sigup_email.getText().endsWith("@gmail.com")){
+             alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Please a vaild syntax email(user@gmail.com) ");
+                alert.showAndWait();
+            }
+            else {
+
+                prepare.execute();
+                alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("Information Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Successfully create a new account!");
+                alert.showAndWait();
+
+                sigup_email.setText("");
+                sigup_username.setText("");
+                sigup_password.setText("");
+            }
+
+        } catch (Exception e) {
+            System.out.println(e);
+
+        }
+    }
+
+
+     public void switchForm(ActionEvent ev) {
         if (ev.getSource() == createnewAccount) {
             sigin_form.setVisible(false);
             sigup_form.setVisible(true);
@@ -175,10 +186,8 @@ public class FXMLDocumentController implements Initializable {
             sigup_form.setVisible(false);
         }
     }
-
+   
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-
+        public void initialize(URL url, ResourceBundle rb) {
     }
-
-}
+    }

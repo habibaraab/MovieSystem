@@ -10,6 +10,8 @@ package javafxapplication9;
  */
 import com.mysql.cj.xdevapi.Statement;
 import com.mysql.cj.jdbc.StatementImpl;
+import com.mysql.cj.jdbc.PreparedStatementWrapper;
+import com.mysql.cj.xdevapi.PreparableStatement;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.net.URL;
@@ -28,6 +30,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart.Data;
@@ -340,7 +343,7 @@ public class dashboardController implements Initializable {
         customer_time.setText(String.valueOf(custD.getTime()));
 
     }
-
+    
     public void deleteCust() {
         String sql = "delete from customer where id ='" + customer_ticketNum.getText() + "'";
         connect = database.getCon();
@@ -349,6 +352,19 @@ public class dashboardController implements Initializable {
             Alert alert;
             prepare = connect.prepareStatement(sql);
 
+            if(customer_ticketNum.getText().isEmpty()||
+                    customer_movTit.getText().isEmpty()||
+                    customer_date.getText().isEmpty()||
+                    customer_time.getText().isEmpty()
+                    ){
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText( "Please select the movie first!");
+            alert.showAndWait();
+            
+            }
+            else{
             alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("confirmation Message");
             alert.setHeaderText(null);
@@ -368,13 +384,12 @@ public class dashboardController implements Initializable {
                 clearCust();
                 showCustList();
 
-            }
+            }}
         } catch (Exception e) {
             System.out.println(e);
         }
 
     }
-
     public void clearCust() {
 
         customer_ticketNum.setText("");
@@ -540,6 +555,20 @@ public class dashboardController implements Initializable {
 
     public void selectMovie() {
 
+        Alert alert;
+       if(avalMovie_movTitle.getText().isEmpty()||avalMovie_genre.getText().isEmpty()
+               ||avalMovie_date.getText().isEmpty()
+               ) {
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText( "Please select the movie first!");
+            alert.showAndWait();
+       
+       
+       
+       }else{
+     
         String url = "file:" + getData.path;
 
         image = new Image(url, 195, 175, false, true);
@@ -550,7 +579,7 @@ public class dashboardController implements Initializable {
         avalMovie_genre.setText("");
         avalMovie_date.setText("");
 
-    }
+    }}
 
     private SpinnerValueFactory<Integer> s1;
     private SpinnerValueFactory<Integer> s2;
@@ -580,8 +609,99 @@ public class dashboardController implements Initializable {
         avalMovie_total.setText("$" + String.valueOf(tot));
 
     }
-
+    
     public void buy() {
+    String sql = "INSERT INTO customer (type, movieTitle, total, date, time) VALUES (?, ?, ?, ?, ?)";
+    connect = database.getCon();
+    String type = "";
+
+    // Determine the ticket type
+    if (p1 > 0 && p2 == 0) {
+        type = "Special Class";
+    } else if (p2 > 0 && p1 == 0) {
+        type = "Normal Class";
+    } else if (p1 > 0 && p2 > 0) {
+        type = "Special & Normal Class";
+    }
+
+    Date date = new Date();
+    java.sql.Date setDate = new java.sql.Date(date.getTime());
+
+    try {
+        Alert alert;
+        LocalTime local = LocalTime.now();
+        Time time = Time.valueOf(local);
+
+        // Check for missing movie selection or quantity
+        if (avalMovie_imgView.getImage() == null || avalMovie_title.getText().isEmpty()) {
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Please select a movie first!");
+            alert.showAndWait();
+            return;
+        }
+
+        if (p1 == 0 && p2 == 0) {
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Please specify the quantity of tickets you want to purchase!");
+            alert.showAndWait();
+            return;
+        }
+
+        // Prepare and execute the SQL statement for customer
+        prepare = connect.prepareStatement(sql);
+        prepare.setString(1, type);
+        prepare.setString(2, avalMovie_title.getText());
+        prepare.setString(3, String.valueOf(tot));
+        prepare.setString(4, String.valueOf(setDate));
+        prepare.setString(5, String.valueOf(time));
+        prepare.executeUpdate();
+
+        // Alert for successful purchase
+        alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information Message");
+        alert.setHeaderText(null);
+        alert.setContentText("Purchase successful!");
+        alert.showAndWait();
+
+        // Fetch the latest customer ID
+        String sql1 = "SELECT * FROM customer";
+        prepare = connect.prepareStatement(sql1);
+        result = prepare.executeQuery();
+        int num = 0;
+        while (result.next()) {
+            num = result.getInt("id");
+        }
+
+        // Insert into customer_info table
+        String sql2 = "INSERT INTO customer_info (customer_id, type, total, movieTitle) VALUES (?, ?, ?, ?)";
+        prepare = connect.prepareStatement(sql2);
+        prepare.setString(1, String.valueOf(num));
+        prepare.setString(2, type);
+        prepare.setString(3, String.valueOf(tot));
+        prepare.setString(4, avalMovie_title.getText());
+        prepare.execute();
+
+        // Clear purchase form
+        clearpur();
+
+    } catch (Exception e) {
+        System.out.println(e.getMessage());
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error Message");
+        alert.setHeaderText(null);
+        alert.setContentText("An error occurred during the purchase process. Please try again.");
+        alert.showAndWait();
+    }
+}
+
+
+ /*   public void buy(ActionEvent e) {
+
+      
 
         String sql = "insert into customer (type,movieTitle,total,date,time) values (?,?,?,?,?)";
 
@@ -599,8 +719,10 @@ public class dashboardController implements Initializable {
         Date date = new Date();
         java.sql.Date setDate = new java.sql.Date(date.getTime());
 
+      
         try {
 
+            
             LocalTime local = LocalTime.now();
             Time time = Time.valueOf(local);
 
@@ -611,13 +733,36 @@ public class dashboardController implements Initializable {
             prepare.setString(4, String.valueOf(setDate));
             prepare.setString(5, String.valueOf(time));
 
-            prepare.executeUpdate();
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+              Alert alert;
+            if (avalMovie_title.getText().isEmpty() &&    e.getSource()==avalMovie_buyBtn) {
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Please select movie !");
+                alert.showAndWait();
+            }
+            else if(e.getSource()==avalMovie_buyBtn){
+
+              
+                
+             prepare.executeUpdate();
+             alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Information Message");
             alert.setHeaderText(null);
             alert.setContentText("Successfully purchase!");
             alert.showAndWait();
+               
+            }
+            
+            
+            
+          
 
+            
+            
+            
+            
+            
             String sql1 = "select * from customer ";
 
             prepare = connect.prepareStatement(sql1);
@@ -636,15 +781,15 @@ public class dashboardController implements Initializable {
             prepare.setString(3, String.valueOf(tot));
             prepare.setString(4, avalMovie_title.getText());
             prepare.execute();
-
+            
             clearpur();
 
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-
+        } catch (Exception ev) {
+            System.out.println(ev);
+        
+       }
     }
-
+*/
     public void clearpur() {
         s1 = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 10, 0);
         s2 = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 10, 0);
@@ -733,31 +878,64 @@ public class dashboardController implements Initializable {
         //EditSear_cuurent.setSelectionModel(null);
     }
 
+
+    
     public void updateEditscreeing() {
+    // Check if a movie is selected (EditSear_title must not be empty)
+    if (EditSear_title.getText().isEmpty()) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error Message");
+        alert.setHeaderText(null);
+        alert.setContentText("No movie selected! Please select a movie to update.");
+        alert.showAndWait();
+        return; // Exit the method as no movie is selected
+    }
 
-        String sql = "update movie set current ='" + EditSear_cuurent.getSelectionModel().getSelectedItem() + "'where movieTitle ='" + EditSear_title.getText() + "'";
+    // Construct the SQL query
+    String sql = "UPDATE movie SET current = ? WHERE movieTitle = ?";
+    connect = database.getCon();
 
-        connect = database.getCon();
+    try {
+        // Prepare the SQL statement
+        prepare = connect.prepareStatement(sql);
+        prepare.setString(1, (String) EditSear_cuurent.getSelectionModel().getSelectedItem());
+        prepare.setString(2, EditSear_title.getText());
 
-        try {
+        Alert alert;
 
-            prepare = connect.prepareStatement(sql);
+        // Check for missing fields
+        if (EditSear_title.getText().isEmpty() || EditSear_imgView.getImage() == null) {
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Please select the movie and ensure all fields are filled!");
+            alert.showAndWait();
+        } else {
+            // Execute the update
+            prepare.executeUpdate();
 
-            prepare.executeUpdate(sql);
-
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            // Show success message
+            alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Information Message");
             alert.setHeaderText(null);
-            alert.setContentText("Successfully Updated!");
+            alert.setContentText("Successfully updated: " + EditSear_title.getText());
             alert.showAndWait();
+
+            // Refresh the list and clear input fields
             showEdit();
             clearEditScreeing();
-
-        } catch (Exception e) {
-            System.out.println(e);
         }
 
+    } catch (Exception e) {
+        System.out.println(e.getMessage());
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error Message");
+        alert.setHeaderText(null);
+        alert.setContentText("An error occurred while updating the movie. Please try again.");
+        alert.showAndWait();
     }
+}
+
 
     public void selectEditScreeing() {
 
@@ -855,39 +1033,65 @@ public class dashboardController implements Initializable {
 
     }
 
+ 
+    
     public void delAddMov() {
-        String sql = "delete from movie where movieTitle='" + addMovie_movTitle.getText() + "'";
-        connect = database.getCon();
-        Alert alert;
-        try {
-            prepare = connect.prepareStatement(sql);
-
-            alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("confirmation Message");
-            alert.setHeaderText(null);
-            alert.setContentText("Are you sure to want delete " + addMovie_movTitle.getText() + " ?");
-
-            Optional<ButtonType> option = alert.showAndWait();
-
-            if (ButtonType.OK.equals(option.get())) {
-                prepare.executeUpdate(sql);
-
-                alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Information Message");
-                alert.setHeaderText(null);
-                alert.setContentText("Successfully deleted!");
-                alert.showAndWait();
-                showAddMoviesList();
-                clearAddMov();
-            }
-
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-
+    // Ensure that a movie is selected (movieId should not be null or empty)
+    if (addMovie_movTitle.getText().isEmpty()) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error Message");
+        alert.setHeaderText(null);
+        alert.setContentText("No movie selected! Please select a movie to delete.");
+        alert.showAndWait();
+        return; // Exit the method as no movie is selected
     }
 
-    public void Logout(ActionEvent ev) {
+    String sql = "DELETE FROM movie WHERE movieTitle = ?";
+    connect = database.getCon();
+
+    try {
+        // Prepare the SQL statement
+        prepare = connect.prepareStatement(sql);
+        prepare.setString(1, addMovie_movTitle.getText());
+
+        // Confirm deletion
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation Message");
+        alert.setHeaderText(null);
+        alert.setContentText("Are you sure you want to delete \"" + addMovie_movTitle.getText() + "\"?");
+        
+        Optional<ButtonType> option = alert.showAndWait();
+
+        if (option.isPresent() && option.get() == ButtonType.OK) {
+            // Execute the delete operation
+            prepare.executeUpdate();
+
+            // Show success message
+            alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Information Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Successfully deleted: " + addMovie_movTitle.getText());
+            alert.showAndWait();
+
+            // Refresh movie list and clear input fields
+            showAddMoviesList();
+            clearAddMov();
+        }
+
+    } catch (Exception e) {
+        System.out.println(e.getMessage());
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error Message");
+        alert.setHeaderText(null);
+        alert.setContentText("An error occurred while deleting the movie. Please try again.");
+        alert.showAndWait();
+    }
+}
+
+    
+   
+    
+  /*  public void Logout(ActionEvent ev) {
 
         if (signOut_btn == ev.getSource()) {
             int a = JOptionPane.showConfirmDialog(null, "Do you want to close application?", "Select", JOptionPane.YES_NO_OPTION);
@@ -895,7 +1099,33 @@ public class dashboardController implements Initializable {
                 System.exit(0);
             }
         }
+    }*/
+    public void Logout(ActionEvent ev) {
+    if (signOut_btn == ev.getSource()) {
+       
+        int a = JOptionPane.showConfirmDialog(null, "Do you want to log out?", "Select", JOptionPane.YES_NO_OPTION);
+        if (a == JOptionPane.YES_OPTION) {
+            try {
+               
+                Stage currentStage = (Stage) ((Node) ev.getSource()).getScene().getWindow();
+                currentStage.close();
+
+                // فتح صفحة تسجيل الدخول
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLDocument.fxml")); // استبدل Login.fxml باسم ملف صفحة تسجيل الدخول
+                Parent root = loader.load();
+                Stage loginStage = new Stage();
+                loginStage.setScene(new Scene(root));
+                loginStage.setTitle("Login");
+                loginStage.show();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(null, "An error occurred while logging out. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }
+}
+
 
     public ObservableList<moviesData> addMovies() {
         ObservableList<moviesData> listData = FXCollections.observableArrayList();
@@ -965,18 +1195,44 @@ public class dashboardController implements Initializable {
 
     }
 
+ 
     public void insertAddmov() {
-        String sql = "insert into movie(id,movieTitle,genre,duration,image,date,current)values(?,?,?,?,?,?,?)";
 
+      
         connect = database.getCon();
         Alert alert;
 
         try {
-            String url = getData.path;
+            
+            
+           //String sql1="select movieTitle from movie where movieTitle='"+addMovie_movTitle.getText()+"'";
+
+
+               if( addMovie_movTitle.getText().isEmpty()
+                   ||addMovie_genre.getText().isEmpty()
+                       ||addMovie_duration.getText().isEmpty()
+                       ||addMovie_pubDate.getValue()==null
+                       ||addMovie_viewImg.getImage()==null
+                       ){
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText( "Please fill all blank fields!");
+            alert.showAndWait();
+                   
+               
+               
+               
+               }else{
+               
+           String sql = "insert into movie(id,movieTitle,genre,duration,image,date,current)values(?,?,?,?,?,?,?)";
+
+           String url = getData.path;
             url = url.replace("\\", "\\\\");
             movieId();
             String mID = String.valueOf(getData.movieId + 1);
 
+            
             prepare = connect.prepareStatement(sql);
             prepare.setString(1, mID);
             prepare.setString(2, addMovie_movTitle.getText());
@@ -985,8 +1241,8 @@ public class dashboardController implements Initializable {
             prepare.setString(5, url);
             prepare.setString(6, String.valueOf(addMovie_pubDate.getValue()));
             prepare.setString(7, "Showing");
-
-            prepare.execute();
+            
+             prepare.execute();
             alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Information Message");
             alert.setHeaderText(null);
@@ -994,37 +1250,100 @@ public class dashboardController implements Initializable {
             alert.showAndWait();
             showAddMoviesList();
             clearAddMov();
+            
+            
+               
+               }
+               
+               
+            
+            }
+          
+          
+        
+        
 
-        } catch (Exception e) {
+        catch (Exception e) {
             System.out.println(e);
         }
 
     }
+
 
     public void updateAddMovies() {
-        String url = getData.path;
+    String url = getData.path;
+    if (url != null) {
         url = url.replace("\\", "\\\\");
-        String sql = "update movie set movieTitle='" + addMovie_movTitle.getText() + "',genre ='" + addMovie_genre.getText() + "',duration='" + addMovie_duration.getText() + "',image='" + url + "',date ='" + addMovie_pubDate.getValue() + "'Where id='" + String.valueOf(getData.movieId) + "'";
+    }
+    
+    // Ensure that a movie is selected (movieId should not be null)
+    if (addMovie_movTitle.getText().isEmpty()
+                   &&addMovie_genre.getText().isEmpty()
+                       &&addMovie_duration.getText().isEmpty()
+                       
+                       &&addMovie_viewImg.getImage()==null
+                       ) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error Message");
+        alert.setHeaderText(null);
+        alert.setContentText("No movie selected! Please select a movie to update.");
+        alert.showAndWait();
+        return; // Exit the method as no movie is selected
+    }
+   
 
-        connect = database.getCon();
-        try {
+    String sql = "UPDATE movie SET movieTitle = ?, genre = ?, duration = ?, image = ?, date = ? WHERE id = ?";
 
-            prepare = connect.prepareStatement(sql);
-            prepare.executeUpdate(sql);
+    connect = database.getCon();
+    try {
+        Alert alert;
 
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Information Message");
+        // Check if any fields are empty
+        if (addMovie_movTitle.getText().isEmpty()
+                || addMovie_genre.getText().isEmpty()
+                || addMovie_duration.getText().isEmpty()
+                || addMovie_pubDate.getValue() == null
+                || addMovie_viewImg.getImage() == null) {
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Message");
             alert.setHeaderText(null);
-            alert.setContentText("Successfully Updated!");
+            alert.setContentText("Please fill in all fields before updating!");
             alert.showAndWait();
-            showAddMoviesList();
-            clearAddMov();
-
-        } catch (Exception e) {
-            System.out.println(e);
+            return; // Exit the method as fields are incomplete
         }
 
+        // Prepare the SQL statement
+        prepare = connect.prepareStatement(sql);
+        prepare.setString(1, addMovie_movTitle.getText());
+        prepare.setString(2, addMovie_genre.getText());
+        prepare.setString(3, addMovie_duration.getText());
+        prepare.setString(4, url);
+        prepare.setDate(5, java.sql.Date.valueOf(addMovie_pubDate.getValue()));
+        prepare.setString(6, String.valueOf(getData.movieId));
+
+        // Execute the update
+        prepare.executeUpdate();
+        alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information Message");
+        alert.setHeaderText(null);
+        alert.setContentText("Successfully updated: " + addMovie_movTitle.getText());
+        alert.showAndWait();
+
+        // Refresh movie list and clear input fields
+        showAddMoviesList();
+        clearAddMov();
+
+    } catch (Exception e) {
+        System.out.println(e.getMessage());
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error Message");
+        alert.setHeaderText(null);
+        alert.setContentText("An error occurred while updating the movie. Please try again.");
+        alert.showAndWait();
     }
+}
+
+    
     
 
   public void searAddMovie() {

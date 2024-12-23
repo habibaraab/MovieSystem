@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxapplication9.dashboardController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxapplication9.dashboardController">
    <children>
       <BorderPane layoutX="34.0" layoutY="46.0" prefHeight="600.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
@@ -48,12 +48,12 @@
                            <graphic>
                               <FontAwesomeIcon glyphName="PLUS" />
                            </graphic></Button>
-                        <Button fx:id="avaliableMov_btn" layoutX="13.0" layoutY="359.0" mnemonicParsing="false" onAction="#switchFrom" prefHeight="41.0" prefWidth="239.0" styleClass="nav-btn" stylesheets="@dashboardDesign.css" text="   Available Movies">
+                        <Button fx:id="avaliableMov_btn" layoutX="40.0" layoutY="359.0" mnemonicParsing="false" onAction="#switchFrom" prefHeight="41.0" prefWidth="239.0" styleClass="nav-btn" stylesheets="@dashboardDesign.css" text="Booking Movies">
                            <font>
                               <Font name="System Bold" size="19.0" />
                            </font>
                         </Button>
-                        <Button fx:id="editScr_btn" layoutX="13.0" layoutY="404.0" mnemonicParsing="false" onAction="#switchFrom" prefHeight="41.0" prefWidth="239.0" styleClass="nav-btn" stylesheets="@dashboardDesign.css" text="Edit Screening">
+                        <Button fx:id="editScr_btn" layoutX="13.0" layoutY="404.0" mnemonicParsing="false" onAction="#switchFrom" prefHeight="41.0" prefWidth="239.0" styleClass="nav-btn" stylesheets="@dashboardDesign.css" text="Edit Showtime">
                            <font>
                               <Font name="System Bold" size="19.0" />
                            </font>
@@ -61,9 +61,9 @@
                               <FontAwesomeIcon glyphName="EDIT" />
                            </graphic>
                         </Button>
-                        <Button fx:id="cust_btn" layoutX="25.0" layoutY="446.0" mnemonicParsing="false" onAction="#switchFrom" prefHeight="41.0" prefWidth="239.0" styleClass="nav-btn" stylesheets="@dashboardDesign.css" text="Customers">
+                        <Button fx:id="cust_btn" layoutX="7.0" layoutY="446.0" mnemonicParsing="false" onAction="#switchFrom" prefHeight="34.0" prefWidth="257.0" styleClass="nav-btn" stylesheets="@dashboardDesign.css" text="Sales Information">
                            <font>
-                              <Font name="System Bold" size="18.0" />
+                              <Font name="System Bold" size="10.0" />
                            </font>
                            <graphic>
                               <FontAwesomeIcon glyphName="USERS" />
@@ -78,12 +78,12 @@
                            </graphic>
                         </Button>
                         <FontAwesomeIcon glyphName="USER" layoutX="79.0" layoutY="157.0" size="10em" />
-                        <FontAwesomeIcon glyphName="SERVER" layoutX="27.0" layoutY="378.0" />
+                        <FontAwesomeIcon glyphName="SERVER" layoutX="14.0" layoutY="389.0" size="2em" />
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="dash_form" layoutX="249.0" layoutY="-7.0" prefHeight="607.0" prefWidth="992.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="249.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-7.0">
                      <children>
-                        <AnchorPane layoutX="26.0" layoutY="14.0" prefHeight="175.0" prefWidth="899.0" stylesheets="@dashboardDesign.css">
+                        <AnchorPane layoutX="39.0" layoutY="14.0" prefHeight="175.0" prefWidth="899.0" stylesheets="@dashboardDesign.css">
                            <children>
                               <AnchorPane layoutX="21.0" layoutY="18.0" prefHeight="139.0" prefWidth="235.0" style="-fx-background-color: #67167d;">
                                  <children>
@@ -148,7 +148,7 @@
                               <String fx:value="white-bg" />
                            </styleClass>
                         </AnchorPane>
-                        <AnchorPane layoutX="20.0" layoutY="219.0" prefHeight="375.0" prefWidth="924.0" stylesheets="@dashboardDesign.css">
+                        <AnchorPane layoutX="39.0" layoutY="211.0" prefHeight="375.0" prefWidth="924.0" stylesheets="@dashboardDesign.css">
                            <styleClass>
                               <String fx:value="white-bg" />
                               <String fx:value="shadow" />
@@ -190,7 +190,7 @@
                               <TextField fx:id="addMovie_movTitle" layoutX="83.0" layoutY="247.0" onAction="#selectMoviesAddList" prefHeight="10.0" prefWidth="148.0" style="-fx-border-color: #141885;" stylesheets="@dashboardDesign.css" />
                               <TextField fx:id="addMovie_genre" layoutX="83.0" layoutY="292.0" onAction="#selectMoviesAddList" prefHeight="21.0" prefWidth="148.0" style="-fx-border-color: #141885;" />
                               <TextField fx:id="addMovie_duration" layoutX="83.0" layoutY="334.0" onAction="#selectMoviesAddList" prefHeight="13.0" prefWidth="148.0" style="-fx-border-color: #141885;" />
-                              <Button fx:id="addMovie_insert" layoutX="13.0" layoutY="431.0" mnemonicParsing="false" onAction="#insertAddmov" prefHeight="46.0" prefWidth="89.0" styleClass="add-btn" stylesheets="@dashboardDesign.css" text="Insert" textFill="WHITE" />
+                              <Button fx:id="addMovie_insert" layoutX="13.0" layoutY="431.0" mnemonicParsing="false" onAction="#insertAddmov" prefHeight="46.0" prefWidth="89.0" styleClass="add-btn" stylesheets="@dashboardDesign.css" text="Add" textFill="WHITE" />
                               <Button fx:id="addMovie_update" layoutX="124.0" layoutY="430.0" mnemonicParsing="false" onAction="#updateAddMovies" prefHeight="47.0" prefWidth="95.0" style="-fx-background-color: green;" styleClass="update-btn" stylesheets="@dashboardDesign.css" text="Update" textFill="WHITE" />
                               <Button fx:id="addMovie_delete" layoutX="12.0" layoutY="498.0" mnemonicParsing="false" onAction="#delAddMov" prefHeight="48.0" prefWidth="90.0" style="-fx-background-color: #e0092d;" styleClass="delete-btn" stylesheets="@dashboardDesign.css" text="Delete" textFill="WHITE" />
                               <Button fx:id="addMovie_clear" layoutX="124.0" layoutY="497.0" mnemonicParsing="false" onAction="#clearAddMov" prefHeight="49.0" prefWidth="94.0" style="-fx-background-color: #b909e0;" styleClass="clear-btn" stylesheets="@dashboardDesign.css" text="Clear" textFill="WHITE" />
@@ -325,10 +325,6 @@
                               <Button fx:id="avalMovie_buyBtn" layoutX="762.0" layoutY="256.0" mnemonicParsing="false" onAction="#buy" prefHeight="39.0" prefWidth="81.0" style="-fx-background-color: #049121;" styleClass="b" text="Buy" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="17.0" />
-                                 </font></Button>
-                              <Button fx:id="avalMovie_recBtn" layoutX="633.0" layoutY="256.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="76.0" style="-fx-background-color: #a68003;" styleClass="bt" text="Receipt" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="15.0" />
                                  </font></Button>
                               <Button fx:id="avalMovie_clearBtn" layoutX="345.0" layoutY="257.0" mnemonicParsing="false" onAction="#clearpur" prefHeight="38.0" prefWidth="74.0" styleClass="clear-btn" text="Clear" textFill="WHITE">
                                  <font>
